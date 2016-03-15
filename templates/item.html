@@ -6,50 +6,30 @@
 	<body>
 		<div class = 'pane'>
 		<h1>{{ catalog.name }}</h1>
-
 		{% with messages = get_flashed_messages() %}
       {% if messages %}
-
         <ul>
-        {% for message in messages %}
-            <li> <strong> {{ message }} </strong> </li>
-        {% endfor %}
+	        {% for message in messages %}
+	            <li> <strong> {{ message }} </strong> </li>
+	        {% endfor %}
         </ul>
-        {% endif %}
+      {% endif %}
     {% endwith %}
-
     {% if items !=[] %}
-
-		<a href = "{{url_for('newItem', catalog_id = catalog.id )}}">Create New Item</a>
-	</br></br>
-
-	<h2>Appetizers</h2>
-
-		{% for i in items %}
-		{% if i.course == 'Appetizer' %}
-
-		<p>{{i.name}}</p>
-
-
-		<p>{{i.description}}</p>
-
-
-		<p>{{i.price}}</p>
-
-		<a href='{{url_for('editItem', catalog_id = catalog.id, item_id=i.id ) }}' >Edit</a>
-	</br>
-	<a href='{{url_for('deleteItem', catalog_id = catalog.id, item_id=i.id ) }}' >Delete</a>
-</br>
-</br>
+			<a href = "{{url_for('newItem', catalog_id = catalog.id )}}">Create New Item</a>
+			</br></br>
+			<h2>Items</h2>
+			{% for i in items %}
+				<p>{{i.name}}</p>
+				<p>{{i.description}}</p>
+				<a href='{{url_for('editItem', catalog_id = catalog.id, item_id=i.id ) }}'>Edit</a>
+				</br>
+				<a href='{{url_for('deleteItem', catalog_id = catalog.id, item_id=i.id ) }}'>Delete</a>
+				</br>
+				</br>
+			{% endfor %}
 		{% endif %}
-
-		{% endfor %}
-
-
-
 		</br></br>
-
 	</div>
 	</body>
-
 </html>

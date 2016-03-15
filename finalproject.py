@@ -2,21 +2,18 @@ from flask import Flask, render_template, request, redirect, jsonify, url_for
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 from database_setup import Base, Catalog, Item
-
+from flask import session as login_session
+import random, string
 app = Flask(__name__)
 
 engine = create_engine('postgresql:///catalog')
 Base.metadata.bind = engine
-
 DBSession = sessionmaker(bind=engine)
-
 session = DBSession()
-
 
 @app.route('/catalog/<int:catalog_id>/item/JSON')
 def catalogitemJSON(catalog_id):
     DBSession = sessionmaker(bind=engine)
-
     session = DBSession()
     catalog = session.query(Catalog).filter_by(id=catalog_id).one()
     items = session.query(Item).filter_by(
@@ -143,7 +140,8 @@ def editItem(catalog_id, item_id):
     else:
 
         return render_template(
-            'editItem.html', catalog_id=catalog_id, item_id=item_id, item=editedItem)
+            'editItem.html', catalog_id=catalog_id, item_id=item_id,
+            item=editedItem)
 
     # return 'This page is for editing item item %s' % item_id
 
@@ -162,7 +160,17 @@ def deleteItem(catalog_id, item_id):
         return render_template('deleteItem.html', item=itemToDelete)
     # return "This page is for deleting item item %s" % item_id
 
+@app.route('/login')
+def loginPage():
+    state = ''.join(random.choice(string.ascii_uppercase +
+        string.digits) for x in range(32))
+    login_session['state'] = state
+    return render_template('login.html')
+    # return 'its {}'.format(login_session['state'])
+
 
 if __name__ == '__main__':
     app.debug = True
+    app.secret_key = 'hello'
+    app.config['SESSION_TYPE'] = 'filesystem'
     app.run(host='0.0.0.0', port=5000)
