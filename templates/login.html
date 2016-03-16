@@ -20,6 +20,9 @@
 
 
 </div>
+
+<div id = "signOutButton">
+</div>
 <div id = "result"></div>
 
 <script>
@@ -39,7 +42,7 @@ function signInCallback(authResult) {
         if (result) {
           $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
          setTimeout(function() {
-          window.location.href = "/restaurant";
+          window.location.href = "/catalog";
          }, 4000);
 
       } else if (authResult['error']) {
