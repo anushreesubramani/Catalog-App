@@ -32,7 +32,7 @@
 </html>
  -->
 
- {% extends "main.html" %}
+{% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
   <div class="row top-menu">
@@ -46,12 +46,12 @@
   <div class="row banner main">
     <div class="col-md-1"></div>
     <div class="col-md-11 padding-none">
-      <h1>Restaurants</h1>
+      <h1>Catalogs</h1>
     </div>
   </div>
 
 <div class = 'flash'>
-          {% with messages = get_flashed_messages() %}
+    {% with messages = get_flashed_messages() %}
       {% if messages %}
 
         <ul>
@@ -67,9 +67,9 @@
   <div class="row padding-top padding-bottom">
     <div class="col-md-1"></div>
     <div class="col-md-10 padding-none">
-      <a href="{{url_for('newRestaurant')}}">
+      <a href="{{url_for('newCatalog')}}">
         <button class="btn btn-default" id="new-restaurant">
-          <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Restaurant
+          <span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Catalog
         </button>
       </a>
     </div>
