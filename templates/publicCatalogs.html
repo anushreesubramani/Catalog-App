@@ -1,32 +1,53 @@
-<html>
+{% extends "main.html" %}
+{% block content %}
+  <div class="row top-item">
+    <div class="col-md-10"></div>
+    <div class="col-md-2 text-right">
+      <a href="{{url_for('showLogin')}}">Click Here to Log in </a>
+    </div>
+  </div>
+  <div class="row divider blue">
+    <div class="col-md-12"></div>
+  </div>
+  <div class="row banner main">
+    <div class="col-md-1"></div>
+    <div class="col-md-11 padding-none">
+      <h1>Catalogs</h1>
+    </div>
+  </div>
 
-<head>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
-  </head>
+  <div class = 'flash'>
+          {% with messages = get_flashed_messages() %}
+      {% if messages %}
 
-
-<body>
-<div class = 'pane'>
-<h1>Catalogs</h1>
-
-<!-- <a href="{{url_for('newCatalog')}}" > <h3> Create a New Catalog </h3> </a> -->
-
-{% for catalog in catalogs %}
-
-
-
-<a href = "{{url_for('showitem', catalog_id = catalog.id)}}"> <p>{{catalog.name}}</p></a>
-
-<!-- <p><a href = "{{url_for('editCatalog',catalog_id = catalog.id)}}">Edit Catalog</a></p> -->
-
-<!-- <p> <a href = "{{url_for('deleteCatalog',catalog_id = catalog.id)}}">Delete Catalog</a> </p> -->
-
-
-
-
-{% endfor %}
+        <ul
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
 
 </div>
-</body>
 
-</html>
+
+
+  <div class="row padding-top padding-bottom">
+    <div class="col-md-1"></div>
+    <div class="col-md-10 padding-none">
+
+    </div>
+    <div class="col-md-1"></div>
+  </div>
+  {% for catalog in catalogs %}
+    <a href = "{{url_for('showItem', catalog_id = catalog.id)}}">
+      <div class="row">
+        <div class="col-md-1"></div>
+          <div class="col-md-10 catalog-list">
+            <h3>{{catalog.name}}</h3>
+          </div>
+        <div class="col-md-1"></div>
+      </div>
+    </a>
+  {% endfor %}
+{% endblock %}

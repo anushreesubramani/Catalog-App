@@ -8,7 +8,7 @@ from sqlalchemy import create_engine
 Base = declarative_base()
 
 class User(Base):
-    __tablename__ = 'user'
+    __tablename__ = 'person'
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
@@ -30,7 +30,7 @@ class Catalog(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
-    user_id = Column(Integer, ForeignKey('user.id'))
+    user_id = Column(Integer, ForeignKey('person.id'))
     user = relationship(User)
 
     @property
@@ -50,7 +50,7 @@ class Item(Base):
     description = Column(String(250))
     catalog_id = Column(Integer, ForeignKey('catalog.id'))
     catalog = relationship(Catalog)
-    user_id = Column(Integer, ForeignKey('user.id'))
+    user_id = Column(Integer, ForeignKey('person.id'))
     user = relationship(User)
 
     @property
