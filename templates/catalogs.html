@@ -1,5 +1,4 @@
 
-
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
@@ -21,19 +20,20 @@
 <div class = 'flash'>
     {% with messages = get_flashed_messages() %}
       {% if messages %}
-
         <ul>
-        {% for message in messages %}
+          {% for message in messages %}
             <li> <strong> {{ message }} </strong> </li>
-        {% endfor %}
+          {% endfor %}
         </ul>
-        {% endif %}
+      {% endif %}
     {% endwith %}
 
 </div>
 
   <div class="row padding-top padding-bottom">
-    <div class="col-md-1"></div>
+    <div class="col-md-1">
+
+    </div>
     <div class="col-md-10 padding-none">
       <a href="{{url_for('newCatalog')}}">
         <button class="btn btn-default" id="new-catalog">
