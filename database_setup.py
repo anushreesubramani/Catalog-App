@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
 Base = declarative_base()
-
+#ths is my file
 class User(Base):
     __tablename__ = 'person'
 
@@ -19,10 +19,10 @@ class User(Base):
     def serialize(self):
         """Return object data in easily serializeable format"""
         return {
-            'id': self.id,
-            'name': self.name,
-            'email': self.email,
-            'picture': self.picture
+            'id': person.id,
+            'name': person.name,
+            'email': person.email,
+            'picture': person.picture
         }
 
 class Catalog(Base):
@@ -30,7 +30,7 @@ class Catalog(Base):
 
     id = Column(Integer, primary_key=True)
     name = Column(String(250), nullable=False)
-    user_id = Column(Integer, ForeignKey('person.id'))
+    user_id = Column(Integer, ForeignKey('person.id',ondelete='CASCADE'))
     user = relationship(User)
 
     @property
@@ -48,9 +48,9 @@ class Item(Base):
     id = Column(Integer, primary_key=True)
     name = Column(String(80), nullable=False)
     description = Column(String(250))
-    catalog_id = Column(Integer, ForeignKey('catalog.id'))
+    catalog_id = Column(Integer, ForeignKey('catalog.id', ondelete='CASCADE'))
     catalog = relationship(Catalog)
-    user_id = Column(Integer, ForeignKey('person.id'))
+    user_id = Column(Integer, ForeignKey('person.id', ondelete='CASCADE'))
     user = relationship(User)
 
     @property
@@ -62,7 +62,6 @@ class Item(Base):
             'description': self.description
         }
 
-# scott:tiger@localhost
 engine = create_engine('postgresql:///catalogapp')
 
 Base.metadata.create_all(engine)

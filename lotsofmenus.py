@@ -1,11 +1,14 @@
-from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy import create_engine
 
-from database_setup import Catalog, Base, Item
+
+from database_setup import Base, Catalog, Item
 
 engine = create_engine('postgresql:///catalogapp')
 # Bind the engine to the metadata of the Base class so that the
 # declaratives can be accessed through a DBSession instance
+# Base = declarative_base()
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
