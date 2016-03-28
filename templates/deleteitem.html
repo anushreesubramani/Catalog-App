@@ -1,24 +1,3 @@
-<!-- <html>
-<head>
-<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
-	</head>
-
-<body>
-<h1> Are you sure you want to delete {{item.name}}? </h1>
-
-<form action="#" method = 'post'>
-
-<input type='submit', value = 'Delete'>
-
-
-
-
-</form>
-
-<a href = '#'> Cancel </a>
-
- -->
-
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
@@ -28,11 +7,13 @@
 
   <button type="submit" class="btn btn-default delete" id="submit" type="submit">
   <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
-  <a href = '{{url_for('showCatalogs')}}'>
-    <button class="btn btn-default delete">
-    <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
-  </a>
-
 </form>
+    <button class="btn btn-default delete">
+    <span>
+    <a href = '{{url_for('showCatalogs')}}' class="glyphicon glyphicon-remove"
+       aria-hidden="true"> Cancel</a></button></span>
+
+
+
 
 {% endblock %}

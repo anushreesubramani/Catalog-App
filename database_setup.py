@@ -6,7 +6,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
 Base = declarative_base()
-#ths is my file
 class User(Base):
     __tablename__ = 'person'
 
@@ -62,6 +61,6 @@ class Item(Base):
             'description': self.description
         }
 
-engine = create_engine('postgresql:///catalogapp')
+engine = create_engine('postgresql:///catalog')
 
 Base.metadata.create_all(engine)
