@@ -8,12 +8,11 @@
   <div class="row banner item">
     <div class="col-md-11 col-md-offset-1 padding-none">
       <h1>{{ catalog.name }}
-      <figure class="creator">
-        <img src="{{ creator.picture}}">
-        <figcaption>{{ creator.name }}</figcaption>
+      <figure class="owner">
+        <img src="{{ owner.picture}}">
+        <figcaption>Created By: {{ owner.name }}</figcaption>
       </figure>
       </h1>
-
     </div>
   </div>
   <div class="row padding-top padding-bottom">
@@ -25,15 +24,7 @@
   </div>
   <div class="row">
     <div class="col-md-12">
-      {% with messages = get_flashed_messages() %}
-        {% if messages %}
-          <ul>
-            {% for message in messages %}
-               <li> <strong> {{ message }} </strong> </li>
-            {% endfor %}
-          </ul>
-        {% endif %}
-      {% endwith %}
+      {% include "flash.html" %}
     </div>
   </div>
   {% if items !=[] %}

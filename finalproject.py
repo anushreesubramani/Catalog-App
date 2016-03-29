@@ -140,9 +140,15 @@ def deleteCatalog(catalog_id):
 @app.route('/catalog/<int:catalog_id>/item')
 def showItem(catalog_id):
     catalog = session.query(Catalog).filter_by(id=catalog_id).first()
+    owner = getUserInfo(catalog.user_id)
     items = session.query(Item).filter_by(
         catalog_id=catalog_id).all()
-    return render_template('showItem.html', items=items, catalog=catalog)
+    if 'username' not in login_session or owner.id != login_session['user_id']:
+        return render_template('publicItems.html', items=items,
+                                catalog=catalog, owner=owner)
+    else:
+        return render_template('showItem.html', items=items, catalog=catalog,
+                                owner=owner)
 
 # Create a new item
 @app.route(

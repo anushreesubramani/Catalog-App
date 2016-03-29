@@ -157,17 +157,17 @@ u }
 .item-price {
   font-weight: 700;
 }
-.creator {
+.owner {
   padding-right: 20px;
   margin-top: -20px;
   text-align: right;
   float:right;
 }
-.creator img {
+.owner img {
   width: 100px;
   border-radius: 50%;
 }
-.creator figcaption {
+.owner figcaption {
   font-size: 14px;
   color: #7B7573;
   font-weight: 400;
