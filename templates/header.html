@@ -1,23 +1,24 @@
 <div class="row top-item">
   <div class="col-md-6">
     <a href="{{url_for('showCatalogs')}}">
-      <span class="glyphicon glyphicon-home" aria-hidden="true"></span>Show All Catalogs
+      <span class="glyphicon glyphicon-home" ></span>Show All Catalogs
     </a>
   </div>
   <div class="col-md-6 text-right">
     {%if 'username' not in session %}
-      <a href="{{url_for('showLogin')}}">Click Here to Login </a>
+      <a href="{{url_for('showLogin')}}" class="glyphicon glyphicon-user"> Login </a>
     {% else %}
-<!--       <div class="row banner item">
- -->        <div class="col-md-11 col-md-offset-1 padding-none">
+        <div class="col-md-11 col-md-offset-1 padding-none">
           <figure class="logged_in_user">
-            <img src="{{ session.picture}}" style = "width: 50px; height: 50px;border-radius: 33px;\
+            <img src="{{ session.picture}}" style = "width: 50px; height: 50px;border-radius: 33px;
         -webkit-border-radius: 33px;-moz-border-radius: 33px;">
           </figure>
           </h1>
         </div>
-      <!-- </div> -->
-      <a href="{{url_for('gdisconnect')}}">Logout </a>
+      <br/>
+      <span>
+      <a class="glyphicon glyphicon-off" href="{{url_for('gdisconnect')}}">Logout </a>
+      </span>
     {% endif %}
   </div>
 </div>

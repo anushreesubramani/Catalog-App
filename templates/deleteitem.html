@@ -4,14 +4,16 @@
 <h2> Are you sure you want to delete {{item.name}}? </h2>
 
 <form action="#" method = 'post'>
-
+<span>
   <button type="submit" class="btn btn-default delete" id="submit" type="submit">
-  <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>Delete</button>
+  <span class="glyphicon glyphicon-trash" ></span>Delete</button>
 </form>
     <button class="btn btn-default delete">
-    <span>
+
     <a href = '{{url_for('showCatalogs')}}' class="glyphicon glyphicon-remove"
-       aria-hidden="true"> Cancel</a></button></span>
+        role="button"> Cancel</a>
+       </button>
+       </span>
 
 
 
