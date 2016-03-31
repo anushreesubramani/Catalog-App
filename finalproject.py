@@ -212,7 +212,7 @@ def deleteItem(catalog_id, item_id):
         flash('Item Successfully deleted: %s' % itemToDelete.name)
         return redirect(url_for('showItem', catalog_id=catalog_id))
     else:
-        return render_template('deleteItem.html', item=itemToDelete)    #
+        return render_template('deleteItem.html', item=itemToDelete)
 
 @app.route('/gconnect', methods=['POST'])
 def gconnect():
