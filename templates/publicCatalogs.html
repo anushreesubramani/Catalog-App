@@ -1,34 +1,22 @@
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
-  <div class="row divider blue">
-    <div class="col-md-12"></div>
-  </div>
-  <div class="row banner main">
-    <div class="col-md-1"></div>
-    <div class="col-md-11 padding-none">
-      <h1>Catalogs</h1>
-    </div>
+<div class=list-container>
+  <div class="row">
+    <h1 class="catalog-title">Catalogs</h1>
   </div>
 
-{% include "flash.html" %}
+  {% include "flash.html" %}
 
-  <div class="row padding-top padding-bottom">
-    <div class="col-md-1"></div>
-    <div class="col-md-10 padding-none">
-
-    </div>
-    <div class="col-md-1"></div>
+  <div class="row" style="height: 50px">
   </div>
+
+  <div class="list-group catalog-ls">
   {% for catalog in catalogs %}
-    <a href = "{{url_for('showItem', catalog_id = catalog.id)}}">
-      <div class="row">
-        <div class="col-md-1"></div>
-          <div class="col-md-10 catalog-list">
-            <h3>{{catalog.name}}</h3>
-          </div>
-        <div class="col-md-1"></div>
-      </div>
+    <a href = "{{url_for('showItem', catalog_id = catalog.id)}}" class="list-group-item">
+      {{catalog.name}}
     </a>
   {% endfor %}
+  </div>
+</div>
 {% endblock %}

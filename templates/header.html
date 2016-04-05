@@ -1,25 +1,28 @@
 <div class="row top-item">
-  <div class="col-md-6">
-    <a href="{{url_for('showCatalogs')}}">
-      <span class="glyphicon glyphicon-home" ></span>Show All Catalogs
-    </a>
-  </div>
-  <div class="col-md-6 text-right">
-    {%if 'username' not in session %}
-      <a href="{{url_for('showLogin')}}" class="glyphicon glyphicon-user"> Login </a>
-    {% else %}
-        <div class="col-md-11 col-md-offset-1 padding-none">
+  <div>
+    <div class="col-md-6">
+      <a href="{{url_for('showCatalogs')}}">
+        <span class="glyphicon glyphicon-home" ></span>Show All Catalogs
+      </a>
+    </div>
+    <div class="col-md-6">
+      {%if 'username' not in session %}
+        <a href="{{url_for('showLogin')}}">
+          <span class="glyphicon glyphicon-user"></span>Login
+        </a>
+      {% else %}
+        <div class="login-container">
           <figure class="logged_in_user">
-            <img src="{{ session.picture}}" style = "width: 50px; height: 50px;border-radius: 33px;
-        -webkit-border-radius: 33px;-moz-border-radius: 33px;">
+            <img src="{{ session.picture}}">
           </figure>
-          </h1>
+          <div class="session-container">
+            <a href="{{url_for('gdisconnect')}}">
+              <span class="glyphicon glyphicon-off session-text"></span>Logout
+            </a>
+          </div>
         </div>
-      <br/>
-      <span>
-      <a class="glyphicon glyphicon-off" href="{{url_for('gdisconnect')}}">Logout </a>
-      </span>
-    {% endif %}
+      {% endif %}
+    </div>
   </div>
 </div>
 

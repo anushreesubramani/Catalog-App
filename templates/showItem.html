@@ -1,16 +1,16 @@
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
-	<div class="row divider green">
-		<div class="col-md-12"></div>
-	</div>
-{% include "owner.html" %}
 
-{% include "flash.html" %}
+<div class="catalog-show-container">
+
+	{% include "owner.html" %}
+
+	{% include "flash.html" %}
 
 	<div class="row padding-top padding-bottom">
-		<div class="col-md-1"></div>
-		<div class="col-md-11 padding-none">
+		<!-- <div class="col-md-1"></div> -->
+		<!-- <div class="col-md-12 padding-none"> -->
 			<a href="{{url_for('editCatalog', catalog_id = catalog.id )}}">
 				<button class="btn btn-default" id="new-item-item">
 					<span class="glyphicon glyphicon-pencil" ></span>Edit Catalog
@@ -26,26 +26,32 @@
 					<span class="glyphicon glyphicon-trash" ></span>Delete Catalog
 				</button>
 			</a>
-		</div>
-		<div class="col-md-7"></div>
+		<!-- </div> -->
+		<!-- <div class="col-md-7"></div> -->
 	</div>
 
 	{% if items !=[] %}
-		<div class="row">
-			<div class="col-md-1"></div>
-			<div class="col-md-3">
-				<h3>Items</h3>
-					{% for i in items %}
-							<div class="item">
-								<h3>{{i.name}}</h3>
-								<p>{{i.description}}</p>
-								<a href='{{url_for('editItem', catalog_id = catalog.id, item_id=i.id ) }}'>Edit</a> |
-								<a href='{{url_for('deleteItem', catalog_id = catalog.id, item_id=i.id ) }}'>Delete</a>
-							</div>
-					{% endfor %}
-			</div>
+		<div class="row items-container">
+			<!-- <div class="col-md-1"></div> -->
+			<!-- <div class="col-md-"> -->
+			<h3 class="item-heading">Items:</h3>
+			{% for i in items %}
+				<div class="item row">
+					<div class="item-content">
+						<h3>{{i.name}}</h3>
+						<p>{{i.description}}</p>
+					</div>
+					<div class="item-edit-options">
+						<a href='{{url_for('editItem', catalog_id = catalog.id, item_id=i.id ) }}' class="item-option-edit">Edit</a> |
+						<a href='{{url_for('deleteItem', catalog_id = catalog.id, item_id=i.id ) }}' class="item-option-delete">Delete</a>
+					</div>
+				</div>
+			{% endfor %}
+			<!-- </div> -->
 
-			<div class="col-md-1"></div>
+			<!-- <div class="col-md-1"></div> -->
 		</div>
 	{% endif %}
+	
+</div>
 {% endblock %}
