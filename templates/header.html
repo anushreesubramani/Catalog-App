@@ -1,0 +1,28 @@
+<div class="row top-item">
+  <div>
+    <div class="col-md-6">
+      <a href="{{url_for('showCatalogs')}}">
+        <span class="glyphicon glyphicon-home" ></span>Show All Catalogs
+      </a>
+    </div>
+    <div class="col-md-6">
+      {%if 'username' not in session %}
+        <a href="{{url_for('showLogin')}}">
+          <span class="glyphicon glyphicon-user"></span>Login
+        </a>
+      {% else %}
+        <div class="login-container">
+          <figure class="logged_in_user">
+            <img src="{{ session.picture}}">
+          </figure>
+          <div class="session-container">
+            <a href="{{url_for('gdisconnect')}}">
+              <span class="glyphicon glyphicon-off session-text"></span>Logout
+            </a>
+          </div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+

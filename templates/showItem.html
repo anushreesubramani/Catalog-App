@@ -1,0 +1,57 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+
+<div class="catalog-show-container">
+
+	{% include "owner.html" %}
+
+	{% include "flash.html" %}
+
+	<div class="row padding-top padding-bottom">
+		<!-- <div class="col-md-1"></div> -->
+		<!-- <div class="col-md-12 padding-none"> -->
+			<a href="{{url_for('editCatalog', catalog_id = catalog.id )}}">
+				<button class="btn btn-default" id="new-item-item">
+					<span class="glyphicon glyphicon-pencil" ></span>Edit Catalog
+				</button>
+			</a>
+			<a href="{{url_for('newItem', catalog_id = catalog.id )}}">
+				<button class="btn btn-default" id="new-item-item">
+					<span class="glyphicon glyphicon-th-list" ></span>Add Item
+				</button>
+			</a>
+						<a href="{{url_for('deleteCatalog', catalog_id = catalog.id )}}">
+				<button class="btn btn-default delete" id="delete-catalog">
+					<span class="glyphicon glyphicon-trash" ></span>Delete Catalog
+				</button>
+			</a>
+		<!-- </div> -->
+		<!-- <div class="col-md-7"></div> -->
+	</div>
+
+	{% if items !=[] %}
+		<div class="row items-container">
+			<!-- <div class="col-md-1"></div> -->
+			<!-- <div class="col-md-"> -->
+			<h3 class="item-heading">Items:</h3>
+			{% for i in items %}
+				<div class="item row">
+					<div class="item-content">
+						<h3>{{i.name}}</h3>
+						<p>{{i.description}}</p>
+					</div>
+					<div class="item-edit-options">
+						<a href='{{url_for('editItem', catalog_id = catalog.id, item_id=i.id ) }}' class="item-option-edit">Edit</a> |
+						<a href='{{url_for('deleteItem', catalog_id = catalog.id, item_id=i.id ) }}' class="item-option-delete">Delete</a>
+					</div>
+				</div>
+			{% endfor %}
+			<!-- </div> -->
+
+			<!-- <div class="col-md-1"></div> -->
+		</div>
+	{% endif %}
+	
+</div>
+{% endblock %}

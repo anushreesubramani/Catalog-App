@@ -1,0 +1,24 @@
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<div class=list-container>
+  <div class="row">
+    <h1 class="catalog-title">Catalogs</h1>
+  </div>
+
+  {% include "flash.html" %}
+
+  <div class="row">
+    <a href="{{url_for('newCatalog')}}" class="link-add-catalog btn btn-default btn-sm"  id="new-catalog">
+      <span class="glyphicon glyphicon-plus" ></span>Add Catalog
+    </a>
+  </div>
+  <div class="list-group catalog-ls">
+  {% for catalog in catalogs %}
+    <a href = "{{url_for('showItem', catalog_id = catalog.id)}}" class="list-group-item">
+      {{catalog.name}}
+    </a>
+  {% endfor %}
+  </div>
+</div>
+{% endblock %}
